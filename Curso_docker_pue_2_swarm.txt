@@ -566,6 +566,8 @@ networks:
 Docker Registry ----> El servidor de imágenes
 
 docker run -d -p 5000:5000 --restart=always -v /srv/registry:/var/lib/registry --name registry registry:2
+OR
+docker run -d -p 6001:5000 --restart=always -v /srv/registry:/var/lib/registry --name registry registry:2
 
 https://docs.docker.com/registry/deploying/#copy-an-image-from-docker-hub-to-your-registry
 
@@ -573,14 +575,18 @@ https://docs.docker.com/registry/deploying/#copy-an-image-from-docker-hub-to-you
 root@node1:/srv/nfs/LocalStacks# cat /etc/docker/daemon.json 
 {
         "dns": [ "8.8.8.8" ],
-        "insecure-registries": [ "192.168.20.201:5000" ]
+        "insecure-registries": [ "192.168.20.33:6001" ]
 
 }
 
-service docker restart
+service docker stop
+service docker start (el restart directamente sale error)
 
-docker tag lamevadebian:1.0 192.168.20.201:5000/debiancustom:1.0
-docker push 192.168.20.201:5000/debiancustom:1.0
+docker tag lamevadebian:1.0 192.168.20.33:6001/debiancustom:1.0
+docker push 192.168.20.33:6001/debiancustom:1.0
+
+ll /srv/registry/docker/registry/v2/repositories/debiancustom
+
 
 ------------------------------------------------------------
 

@@ -30,6 +30,12 @@ consul-template -template "tuplantilla.ctmpl:/tmp/archivo-que-genero.txt:comando
 consul-template -consul-addr=http://localhost:8500 -dry -once -template="/root/plantilla.ctmpl:/tmp/listado"
  
 
+---------
+
+
+FIN DE CURSO
+
+scp /tmp/curso_docker_ubuntu_data_toor.tar.gz docker@192.168.20.113:/tmp
 
 
 

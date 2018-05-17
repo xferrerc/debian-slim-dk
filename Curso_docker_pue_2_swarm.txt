@@ -577,6 +577,8 @@ root@node1:/srv/nfs/LocalStacks# cat /etc/docker/daemon.json
 
 }
 
+service docker restart
+
 docker tag lamevadebian:1.0 192.168.20.201:5000/debiancustom:1.0
 docker push 192.168.20.201:5000/debiancustom:1.0
 
